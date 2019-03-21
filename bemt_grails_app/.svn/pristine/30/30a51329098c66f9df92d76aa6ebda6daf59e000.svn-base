@@ -1,0 +1,55 @@
+.flashmessage, .asyncmessage {
+	z-index:2000;
+	width:400px;
+	padding:10px 10px;
+	border:1px solid $fm-info-border;
+	background-color:$fm-info-bg;
+	color:$fm-info-color;
+	box-shadow: 3px 3px 3px #ddd;
+	position:fixed;
+	top:50px;
+	left: 50%;
+	margin-left: -200px;
+	p {
+		margin:0;
+		padding:0;
+	}
+}
+.staticmessage {
+	width:700px;
+	padding:10px 10px;
+	border:1px solid $fm-info-border;
+	background-color:$fm-info-bg;
+	color:$fm-info-color;
+	box-shadow: 3px 3px 3px #ddd;
+	margin:10px auto;
+	p {
+		margin:0;
+		padding:0;
+	}
+}
+
+
+.flashmessage.error, .staticmessage.error {
+	border:1px solid $fm-error-border;
+	background-color:$fm-error-bg;
+	color:$fm-error-color;
+}
+
+.asyncmessage.success {
+	border:1px solid $fm-success-border;
+	background-color:$fm-success-bg;
+	color:$fm-success-color;
+}
+
+.asyncmessage.error {
+	border:1px solid $fm-error-border;
+	background-color:$fm-error-bg;
+	color:$fm-error-color;
+}
+
+.asyncmessage.info {
+	border:1px solid $fm-info-border;
+	background-color:$fm-info-bg;
+	color:$fm-info-color;
+}

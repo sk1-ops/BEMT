@@ -1,0 +1,19 @@
+table.biobanklist {
+	th {
+		font-size:0.8em;
+		color:#333;
+		padding:3px 2px;
+		span:hover {
+			color:inherit;
+		}
+	}
+	td {
+		padding:10px 4px;		
+		&.forecast-number {
+			font-size:0.8em;
+		}
+		&.biobank-name {
+			font-size:0.9em;
+		}
+	}
+}

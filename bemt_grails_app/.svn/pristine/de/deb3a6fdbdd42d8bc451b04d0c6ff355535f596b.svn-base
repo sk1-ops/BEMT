@@ -1,0 +1,121 @@
+/* use this for styles that should be included on basic pages, 
+make sure you use the .basic-page class on the container div in your layout template */
+
+/* styles for lists of things */
+.listitem-actions {
+    padding-top:1px;
+    color:#777;
+    font-size:1.5em;
+    height:20px;    
+}
+
+.hidden {
+    display:none;
+}
+
+.form_required {
+    margin:0px 0px 15px 0px;
+    font-style: italic;
+}
+
+.form_detail_container {
+    padding:20px;
+    @include border-radius(10px);
+    border: 1px solid #ccc;
+
+}
+
+.required_mark {
+    color:red;
+    font-size:0.75em;
+}
+
+.ctl-btn-group {
+    margin:10px 0 0 0;
+}
+
+#btn_unitCostSave {display:none;}
+
+input.bemt_small_input_field {
+    margin-bottom:0px;
+}
+.basic-page {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto (-$footer-height); /* the bottom margin is the negative value of the footer's height */
+
+    .breadnav {
+    	margin:10px 0;
+    }
+
+    .example {
+      color:#999;
+      font-style:italic;
+    }
+
+    table.listing {
+    	border-collapse: collapse;
+    	tr {
+
+    		th {
+    			background-color:#ddd;
+    			border:1px solid #ccc;
+    		}
+
+    		td {
+    			border:1px solid #ccc;
+    		}
+
+    	}
+    }
+
+    a.ctl {
+    	font-size:1.2em;
+    	color:#bbb;
+
+    	.remove:hover {
+    		color:red;
+    	}
+
+    	.edit:hover {
+    		color:blue;
+    	}
+
+    	.price:hover {
+    		color:green;
+    	}
+
+
+    }
+
+    .bbpquestion {
+        border-top:1px solid #e5e5e5;
+        padding:10px 5px 0px 5px;
+
+        .qnum {
+            font-size:1.5em; font-weight:bolder;color:#555;         
+        }
+    }
+
+    .bbpquestion:hover {
+        background-color:#FCF8E3;cursor:pointer
+    }
+
+}
+
+.cp-proddetail {
+    margin:10px 0 15px 0;    
+    font-size:1.2em;
+    .labeltag {
+        font-weight:bold;
+        width:115px;
+        float:left;
+    }
+    .value {
+        margin-left:130px;
+    }
+    .descr {
+        margin-top:5px;
+    }
+}

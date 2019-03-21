@@ -1,0 +1,79 @@
+package com.provia.bemt.service
+
+import grails.transaction.Transactional
+import com.provia.bemt.domain.Bemtuser
+import com.provia.bemt.domain.PasswordHistory
+import com.provia.bemt.domain.PropertiesLookUp
+import cr.co.arquetipos.password.*
+import org.codehaus.groovy.grails.commons.ConfigurationHolder as CH
+
+@Transactional
+class UserService {
+    
+    def dailyPasswordExpiry() {
+        
+        //println(" In dailyPasswordExpiry ")
+        def now = new Date()
+        def fiveDays = now + 5
+        def users = Bemtuser.findByNotificationSentAndExpirationDateBetween("N",now,fiveDays)
+        
+        //println(" Hiii ")
+        users.each{
+            def url = CH.config.grails.serverURL
+            def userEmail = it.email
+            println(" name ,  userEmail= "+it.nameFirst +" "+ " "+userEmail)
+            if(it)
+            {
+                //send email 
+                sendMail {
+                    async true
+                    to userEmail
+                    subject "BEMT Password Reset Request"
+                    html '''<html>
+	<h2>BEMT Password Reset Request. </h2>
+        <p> BEMT Password Renewal Period has begun. </p>
+        <p> The BEMT password set for this email address username is about to expire in 5 days. </p>
+	<p>Please login to BEMT and reset your password in your Profile</p>
+	<p>https://bemt.nci.nih.gov/bemt/public/index </p>
+	<p>For additional assistance, please contact us at BEMT-help@nci.nih.gov</p>
+	<p>Thank you.</p>
+</html>'''
+                    //html g.render(template:"expiredPwemail", model: [url: url])
+                }
+                it.notificationSent = "Y"
+                it.save()
+            }
+            else {
+                println "user with email: "+ userEmail +" does not exist."
+            }
+            
+        }
+    }
+    
+    def boolean differentFromPast(Bemtuser user,String enteredPassword)
+    {
+        def noMatch = true
+        def pastNumberOfPassWords = uniqueFromPastPasswords()
+        def history = PasswordHistory.executeQuery(""" from PasswordHistory ph
+                                                     where ph.bemtuser.id = :id \n\
+                                                     order by ph.changeDate desc """ , [id: user.id],[max:pastNumberOfPassWords])
+        //println(" In differentFromPast with userId "+user.id)
+        history.each {
+            if(PasswordTools.checkDigestBase64(enteredPassword,it.password))
+            {
+                  //println(" Match found")
+                  noMatch = false
+                  return noMatch
+            }
+        }
+                   
+        return noMatch
+    }
+    
+    def int uniqueFromPastPasswords()
+    {
+        def lookup = PropertiesLookUp.findByParamName('UNIQUE_FROM_PAST_PASSWORDS')
+        def number = Integer.parseInt(lookup.paramValue)
+        return number
+    }
+}

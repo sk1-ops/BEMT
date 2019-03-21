@@ -1,0 +1,13 @@
+.save_unitprice {
+	padding:6px 10px;
+	font-size:0.8em;
+	margin-bottom:0px;
+}
+
+.disclaimer {
+	margin-bottom:20px;
+	font-size:1em;
+	color:#555;
+	font-style:italic;
+	font-size:0.9em;
+}

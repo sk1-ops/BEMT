@@ -1,0 +1,88 @@
+/* global styles */
+
+@import "includes/foundation_settings";
+@import "../../web-app/vendor/font-awesome/scss/font-awesome";
+
+@import "includes/locals";
+@import "includes/mixins";
+
+@import "page-templates/app-page";
+
+@import "components/project";
+@import "components/product";
+@import "components/topnav";
+@import "components/footer";
+@import "components/flashmessage";
+@import "components/error";
+@import "components/proforma";
+@import "components/marketdata";
+@import "components/home";
+
+html, body {
+	height: 100%;
+}
+
+body {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+    -webkit-font-smoothing: antialiased;
+}
+
+.radius-10 {
+	@include border-radius(10px) ;
+}
+
+a.nodecor {
+	color:inherit;
+}
+
+/* font stuff */
+.font200 { font-size:2.0em;}
+.font150 { font-size:1.5em;}
+.font125 { font-size:1.25em;}
+.font110 { font-size:1.1em;}
+
+.green {color:green;}
+.red {color:red;}
+
+/* control icons */
+.ctlicon-remove {color:red;}
+
+/* controls stuff */
+.ctl-btn-group { 
+}
+
+.empty-list-panel {
+	@include border-radius(5px);
+	@include panel($empty-list-panel-bg);
+}
+
+.form-error-panel {
+	@include border-radius(5px);
+	@include panel($empty-list-panel-bg);
+}
+
+textarea {
+	height:auto;
+}
+
+
+.tooltip {
+	font-size:0.8em;
+	font-weight:normal;
+}
+
+.stepnav {
+	font-size:0.9em;
+	margin-bottom:0px;
+	margin-top:5px;
+	padding: 4px 8px;
+
+}
+
+.bemtbutton {
+	font-size:0.9em;
+	padding: 6px 8px;
+
+}

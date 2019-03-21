@@ -1,0 +1,46 @@
+$text-font-stack: "nimbus-sans-1","nimbus-sans-2",sans-serif;
+$text-font-color: #000;
+
+
+$header-font-stack:	"Open Sans", sans-serif;
+$header-font-color: black;
+
+$bemt-primary-color: #0072C5;
+$bemt-secondary-color: #6283AC;
+$bemt-tertiary-color: #C4DAE9;
+
+$footer-border-top: 10px solid $bemt-tertiary-color;
+$footer-font-color: #eee;
+$footer-hover-color: #ccc;
+$footer-icon-color: #333;
+$footer-padding-top:15px;
+$footer-height:50px;
+
+
+$border-size: 10px;
+$light-border-color: #e5e5e5;
+
+$sep-light-border: $border-size solid $light-border-color;
+
+$light-border-size: 10px;
+$light-border-color: #e5e5e5;
+
+$pages-ahead-size: 2.5em;
+$pages-bhead-size: 1.5em;
+
+/* custom panel(s) */
+
+$empty-list-panel-bg:#F2DEDE;
+
+/* flash messages */
+$fm-error-bg:#F2DEDE;
+$fm-error-border:#ff0000;
+$fm-error-color:#B94A48;
+
+$fm-info-bg:#D9EDF7;
+$fm-info-border:darken($fm-info-bg,20%);
+$fm-info-color:#3A87AD;
+
+$fm-success-bg:#DFF0D8;
+$fm-success-border:darken($fm-success-bg,20%);
+$fm-success-color:#468847;

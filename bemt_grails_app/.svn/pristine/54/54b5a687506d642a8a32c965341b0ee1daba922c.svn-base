@@ -1,0 +1,194 @@
+package com.provia.bemt.controller
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+import cr.co.arquetipos.password.*
+
+import com.provia.bemt.domain.Bemtuser
+import com.provia.bemt.domain.Organization
+import com.provia.bemt.domain.Proforma
+import com.provia.bemt.service.OrganizationService
+
+class OrganizationController extends BemtController {
+    def organizationService
+
+    //static allowedMethods = [createorg: "POST"]
+
+    def create() {
+        render(view: 'create', model:[obj: new Organization(params)])
+    }
+
+    def copy(Organization obj) {
+        render(view: 'copy', model:[obj: obj])
+    }
+
+    @Transactional
+    def savecopy() {
+
+        def ok = organizationService.checkOrgById(params.copyorg,session.user)
+        if(ok) {
+            //shortcut
+            Organization org = new Organization(params)
+            org.setDeleted(false)
+            org.setTemplate(false)
+            def sourceOrg = Organization.get(params.copyorg)
+            if(org.validate()) {
+                println "going to copy "+ sourceOrg.name
+                def newOrg = organizationService.copyOrganization(sourceOrg, params.name, params.description, session.user)
+                def orgs = organizationService.getUserOrganizations(session.user)
+                organizationService.updateOrganizationListInSession(orgs)
+                flash.message = "A copy of '${sourceOrg.name}' was created as a new Biobank named '${newOrg.name}'."
+            } else {
+                respond org.errors, view:'copy', model:[obj: sourceOrg]
+                return          
+            }
+        }
+        redirect controller: 'home', action: 'index' 
+    }     
+
+    def reset(Organization obj) {
+        render(view: 'reset', model:[obj: obj])
+    }
+
+    @Transactional
+    def doreset(Organization obj) {
+        //get name
+        def o = obj
+        def name = o.name
+        def desc = o.description
+        organizationService.deleteOrganization(o)  
+
+        if(params.mode == 'template') {
+            def sourceOrg = organizationService.getTemplateOrganization()
+            def neworg = organizationService.copyOrganization(sourceOrg, name, desc, session.user)
+            organizationService.setCurrentOrganization(neworg, null);
+            flash.message = "'${name}' was reset to the template biobank."
+        } else {
+            def newOrg = new Organization(name: name, description: desc)
+            newOrg.owner = session.user
+            newOrg.template = false
+            newOrg.deleted = false
+            newOrg.save()
+            organizationService.setupNewOrganization(newOrg,session.user)
+            organizationService.setCurrentOrganization(newOrg, null);
+            flash.message = "'${obj.name}' was reset to the system template."
+        }
+        redirect controller: 'home', action: 'index'
+    }
+
+    def edit(Organization obj) {
+        def ok = organizationService.checkOrgById(obj.id.toString(),session.user)
+        if (ok) {
+            render(view: 'edit', model:[obj: obj])
+        } else {
+            flash.message = "You are not authorized to edit this organization."
+            redirect controller: 'home', action: 'index'
+        }
+    }
+
+    @Transactional
+    def delete(Organization obj) {
+        def ok = organizationService.checkOrgById(obj.id.toString(),session.user)
+        if (ok) {
+          
+            organizationService.deleteOrganization(obj)
+            if(!obj.save()) {
+                respond obj.errors, controller: 'home', view:'index'
+                return
+            } else {
+                def orgs = organizationService.getUserOrganizations(session.user)
+                organizationService.updateOrganizationListInSession(orgs);
+                organizationService.setCurrentOrganization(null, orgs);
+                request.withFormat {
+                    form {
+                        flash.message = "Biobank '${obj.name}' was deleted from BEMT!"
+                        redirect controller: 'home', action: 'index'
+                    }
+                }
+            }
+        } else {
+            flash.message = "You are not authorized to delete this organization."
+            redirect controller: 'home', action: 'index'
+        }
+    } 
+
+    @Transactional
+    def update(Organization obj) {
+        def ok = organizationService.checkOrgById(obj.id.toString(),session.user)
+        if (ok) {
+            if(!obj.save()) {
+                respond obj.errors, view:'edit', model:[obj: obj]
+                return
+            } else {
+                request.withFormat {
+                    form {
+                        flash.message = "Biobank '${obj.name}' was updated successfully!"
+                        redirect controller: 'home', action: 'index'
+                    }
+                    '*' {respond obj, [status: UDPATED]}
+                }
+            }
+        } else {
+            flash.message = "You are not authorized to update this organization."
+            redirect controller: 'home', action: 'index'
+        }
+    }   
+
+    def changeorg() {
+        if(params.org != '') {
+            def org = Organization.get(params.org)      
+            organizationService.setCurrentOrganization(org, null);
+        }
+        def where = params.c ? params.c : 'home'
+        redirect controller: where, action: 'index'
+    }
+
+    @Transactional
+    def save(Organization obj) {
+        println "Saving Organization"
+        if (params.template) {
+            def sourceOrg = organizationService.getTemplateOrganization()      
+            organizationService.copyOrganization(sourceOrg, params.name, params.description, session.user)
+            flash.message = "A copy of '${sourceOrg.name}' was created as a new Biobank named '${params.name}'."
+            request.withFormat {
+                form {
+                    flash.message = "New Biobank '${obj.name}' was created successfully!"
+                    redirect controller: 'home', action: 'index'
+                }
+                formRemote {
+                    '*' {respond obj, [status: CREATED]}          
+                }
+            }
+        } else {
+            obj.owner = session.user
+            obj.template = false
+            obj.deleted = false
+            if(!obj.save()) {
+                respond obj.errors, view:'create', model:[obj: obj]
+                return
+            } else {
+                organizationService.setupNewOrganization(obj,session.user)
+                organizationService.changeOrganization(obj)
+                def orgs = organizationService.getUserOrganizations(session.user)
+                organizationService.updateOrganizationListInSession(orgs)
+                request.withFormat {
+                    form {
+                        flash.message = "New Biobank '${obj.name}' was created successfully!"
+                        redirect controller: 'home', action: 'index'
+                    }
+                    formRemote {
+            '*' {respond obj, [status: CREATED]}          
+                    }
+                }
+            }
+        }
+    }
+
+    private String parseErrors(Object errors) {
+        if (errors.hasFieldErrors("email")) {
+            return "You must enter a valid email address"
+        }
+        return "Unknown Error"
+    }
+
+}

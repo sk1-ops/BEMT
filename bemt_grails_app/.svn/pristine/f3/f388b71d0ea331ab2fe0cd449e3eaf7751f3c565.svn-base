@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta name="layout" content="../layouts/public"/>
+        <title>Password Reset Request</title>
+    </head>
+    <body>
+        <br/>
+        <div class="row">
+            <div class="small-12 columns">
+                <h3><i class="fa fa-bar-chart-o"></i> Biobank Economic Modeling Tool</h3>
+            </div>			
+        </div>
+        <div class="row">
+            <div class="small-8 columns">
+                <g:render template="../components/flashmessage" model="[flash: flash]"/>
+                <g:render template="../components/validationerrormessage" model="[bean: proforma]"/>
+            </div>
+        </div>			
+        <br/>
+        <div class="row">
+            <div class="small-3 columns">&#160;</div>
+            <div class="small-5 columns end">
+                <h3>Password Reset Request</h3>
+                <g:form controller="public" action="forgotpass">
+                    <fieldset>
+                        <legend></legend>
+                        <g:if test="${flash.object == 'login'}">
+                            <g:render template="../components/flashmessage" model="['flash':flash]"/>
+                        </g:if>
+                        <p>Enter the email you used to sign up for BEMT and click the "Send Link" button. The system will email you a link to reset your password. If you don't see it within the next 10 minutes, check your SPAM folder. Please note that the email address is case sensitive.</p>
+                        <label>Email Address</label>
+                        <input id="username" name="email" type="text" placeholder="Your email address…">
+                        <br/>
+                        <button type="submit" class="button bemtbutton radius">Send Link</button>
+                        <button type="reset" class="button secondary bemtbutton radius">Reset</button><br/>
+                    </fieldset>
+                </g:form>		
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+.flasherror {
+	padding:5px 10px;
+	border:1px solid $fm-error-border;
+	background-color:$fm-error-bg;
+	color:$fm-error-color;
+	margin-bottom:5px;
+	box-shadow: 3px 3px 3px #ddd;
+
+	p {
+		margin-bottom:2px;
+	}
+}

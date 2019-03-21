@@ -1,0 +1,16 @@
+CODE HELP
+
+grails schema-export
+
+TODO
+
+
+- do case ins match for labor category
+- do case ins match for product
+
+- get some data in that has "not reporeted" so that can be tested on the copy.
+- add equipment
+
+- don't show "Copy" icon when the buy/lease = "Other"
+
+- for product copy, try to match "Type", use type name for "name", and combine all other attrs using "Label: value; etc"

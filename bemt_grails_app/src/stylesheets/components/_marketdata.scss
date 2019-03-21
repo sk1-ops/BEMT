@@ -1,0 +1,309 @@
+$market-data-border-color:#bbb;
+$market-data-border-altcolor:$bemt-primary-color;
+
+$market-label-color:#333;
+$market-label-size:1.0em;
+
+$market-slicecolor1:#d70206;
+$market-slicecolor2:#F4C63D;
+$market-slicecolor3:purple;
+$market-slicecolor4:green;
+$market-slicecolor5:blue;
+$market-slicecolor6:gray;
+
+.md-detail-instructions {
+	font-size:0.9em;
+	margin:2px 0px 4px 0px;
+	font-style: italic;
+}
+
+.md-results-count {
+	margin-bottom:5px;
+	font-style: italic;
+}
+
+.md-results {
+	padding:4px 0;
+
+	border:1px solid #777;
+	border-collapse: collapse;
+
+	.md-details-row {
+
+		.md-row-sep {
+			height:2px;
+			border-bottom:1px solid #ccc;
+			margin:4px 0;
+		}
+
+		table.md-results-detail {
+			border-collapse: collapse;
+			td {
+				font-size:0.9em;
+				padding:2px;
+				margin:2px 0px;
+			}
+
+			th {
+				font-size:0.9em;
+				padding:2px;
+				margin:0;
+				background-color: #ccc;
+				border-top:1px solid #777;
+				border-bottom:1px solid #777;
+				border-collapse: collapse;
+			}			
+		}
+		
+
+
+		dd > a {
+			font-size:0.9em;
+			padding:5px 10px;
+			margin:0px;
+		}
+
+		dl {
+			width:200px;
+			padding:0;
+			margin:0;
+		}
+
+		dl:first-child {
+			border-top:1px solid #ccc;
+		}
+		dd:not(.active) {
+			border-bottom:1px solid #ccc;
+			border-right:6px solid #ccc;
+			border-left:1px solid #ccc;
+		}
+		dd.active {
+			
+			border-right:none;
+			border-bottom:1px solid #ccc;
+			border-left:1px solid #ccc;
+			a {
+				background-color:$bemt-primary-color;
+				color:#fff;
+				font-weight:bold;
+			}
+		}
+
+	}
+
+	tr.md-results-row {
+		
+		.md-detail-toggle {
+			text-align:center;
+			a {
+				color:#999;
+			}
+			a:hover {
+				color:blue;
+			}
+		}
+		
+		td {
+			font-size:1em;
+			padding:4px 0px;
+			margin:2px 0px;
+		}
+
+		th {
+			font-size:1em;
+			padding:0;
+			margin:0;
+			background-color: #ccc;
+			border-bottom:1px solid #777;
+			border-collapse: collapse;
+		}
+	}
+}
+
+.md-load-widget {
+	width:200px;
+	margin:10px auto;
+	text-align:center
+}
+
+
+.chart-widget {
+	h5 {
+		margin-left:20px;
+	}
+}
+
+.legend {
+	margin-top:20px;
+	margin-left:20px;
+	.entry {
+		margin-bottom:5px;
+		.swatch {
+			height:20px;			
+			width:20px;			
+		}
+		.llabel {
+			line-height:18px;
+			padding-top:2px;
+			margin-left:30px;
+			.other {
+				font-size:0.8em;
+			}
+		}
+	}
+}
+
+.swatch1 {
+	background-color:$market-slicecolor1;
+	color:$market-slicecolor1;
+}
+.swatch2 {
+	background-color:$market-slicecolor2;
+	color:$market-slicecolor2;
+}
+.swatch3 {
+	background-color:$market-slicecolor3;
+	color:$market-slicecolor3;
+}
+.swatch4 {
+	background-color:$market-slicecolor4;
+	color:$market-slicecolor4;
+}
+.swatch5 {
+	background-color:$market-slicecolor5;
+	color:$market-slicecolor5;
+}
+
+.swatch6 {
+	background-color:$market-slicecolor6;
+	color:$market-slicecolor6;
+}
+
+.bemt-chart-1 {
+	.ct-slice {
+		fill:$market-slicecolor1;		
+	}
+	.ct-label {
+		fill:$market-label-color;
+		font-size:$market-label-size;
+	}
+}
+
+.bemt-chart-2 {
+	.ct-slice {
+		fill:$market-slicecolor2;		
+	}
+	.ct-label {
+		fill:$market-label-color;
+		font-size:$market-label-size;
+	}
+}
+
+.bemt-chart-3 {
+	.ct-slice {
+		fill:$market-slicecolor3;		
+	}
+	.ct-label {
+		fill:$market-label-color;
+		font-size:$market-label-size;
+	}
+}
+
+.bemt-chart-4 {
+	.ct-slice {
+		fill:$market-slicecolor4;		
+	}
+	.ct-label {
+		fill:$market-label-color;
+		font-size:$market-label-size;
+	}
+}
+
+.bemt-chart-5 {
+	.ct-slice {
+		fill:$market-slicecolor5;		
+	}
+	.ct-label {
+		fill:$market-label-color;
+		font-size:$market-label-size;
+	}
+}
+
+.bemt-chart-6 {
+	.ct-slice {
+		fill:$market-slicecolor6;		
+	}
+	.ct-label {
+		fill:$market-label-color;
+		font-size:$market-label-size;
+	}
+}
+
+
+.row.full-width {
+  width: 100%;
+  max-width: 100%;
+}
+
+.marketdata  {
+
+	margin: 10px 0 0 0 ;
+	
+	.search-controls {
+		padding:5px 15px 5px 5px;
+		border-bottom:1px solid $market-data-border-altcolor;
+	}
+
+	.search-control {
+		font-size:0.9em;
+		margin:0 0 5px 0;
+		padding:0px;
+		
+		label {
+			margin:5px 0 0 0;
+			padding:0;
+		}
+
+		select {
+			padding:2px;
+			font-size:0.9em;
+		}
+	}
+	
+	.search-buttons {
+		text-align:left;
+
+		.button {
+			padding:6px 8px;
+			margin-bottom:3px;
+
+		}
+	}
+
+
+	.search-results {
+		padding:15px 5px 5px 5px;
+		@include border-radius(10px);	
+	}
+
+	.default-msg {
+		margin: 0 auto;
+		width:50%;
+		font-size:2em;
+	}
+
+	.single-select select {
+		margin-bottom:5px;
+
+	}
+
+	select.multiselect {
+		height:50px;
+		margin-bottom:10px;
+	}
+
+	.ageheader {
+		margin-bottom:2px;
+	}
+}
+

@@ -1,0 +1,42 @@
+footer {
+	border-top:$footer-border-top;
+	background-color:$bemt-primary-color;
+	color:$footer-font-color;
+	height:$footer-height;
+	padding:$footer-padding-top 0 0 0;
+ 	
+ 	a {
+		color:$footer-font-color;
+	}
+
+	.icon {
+		font-size:0.9em;
+	}
+
+	.icon-color {
+		color:$footer-icon-color
+	}
+
+	a:hover {
+		color:$footer-hover-color;
+	}
+
+	.nav {
+		text-transform:uppercase;
+		font-family: $text-font-stack;
+		font-weight:500;
+		font-size:0.7em;
+	}
+
+	.copyright {
+		font-family: $text-font-stack;
+		font-weight:300;
+		font-size:0.7em;
+		margin:0;
+	}
+
+}
+
+.footer-push {
+    height: $footer-height; /* .push must be the same height as .footer */
+}

@@ -1,0 +1,6 @@
+#Grails Metadata file
+#Fri Jan 31 12:23:31 EST 2014
+app.grails.version=2.3.5
+app.name=bemt
+app.servlet.version=3.0
+app.version=3.7

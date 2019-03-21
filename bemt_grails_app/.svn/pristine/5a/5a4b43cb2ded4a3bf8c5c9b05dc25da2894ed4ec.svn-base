@@ -1,0 +1,1 @@
+select id, version, date_modified, param_name, param_value from properties_look_up

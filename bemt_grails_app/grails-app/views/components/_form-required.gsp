@@ -1,0 +1,1 @@
+<div class="form_required"><i class="fa fa-asterisk required_mark"></i> denotes required field</div>

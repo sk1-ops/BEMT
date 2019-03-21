@@ -1,0 +1,10 @@
+.bemt-topnav {
+	.fa {
+		color:white;
+	}
+
+	.header-icon {
+		font-size:1.3em;
+	}
+
+}

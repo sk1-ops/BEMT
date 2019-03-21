@@ -1,0 +1,17 @@
+package com.provia.bemt.controller
+
+import static org.springframework.http.HttpStatus.*
+import grails.transaction.Transactional
+
+import com.provia.bemt.domain.SnapshotProject
+import com.provia.bemt.domain.SnapshotProduct
+
+
+class SnapshotProjectController extends BemtController {
+
+  def show(SnapshotProject obj) {
+  	println "got here..."
+  	super.isValid(obj) //check to see if user can act on this obj
+    render(view: 'show', model:[obj: obj, products: SnapshotProduct.findAllByProject(obj)])
+  } 
+}

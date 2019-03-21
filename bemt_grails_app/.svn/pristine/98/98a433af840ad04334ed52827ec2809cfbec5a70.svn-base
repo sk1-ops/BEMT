@@ -1,0 +1,181 @@
+$proforma-header-color: #ccc;
+$proforma-border-color: #ddd;
+$proforma-col1-width: 400px;
+
+.snapshotlisting {
+	border:1px #ccc solid;
+	padding: 5px;
+	background-color: #fff;
+	margin-bottom: 10px;
+
+	.date {
+		font-size:0.85em;
+		padding:0;
+		margin:0 0 10px 0;
+	}
+	.delete-snapshot {
+		font-size:1.0em;
+		cursor:pointer;
+	}
+
+	.delete-snapshot:hover {
+		color:red;  
+	}
+
+}
+
+.proforma-forecast {
+	border:1px solid $proforma-border-color;
+	width:100%;	
+	border-collapse: collapse;
+
+	thead {
+		th {
+			background-color: $proforma-header-color
+		}
+		.col1 {
+
+		}
+		.colmonth {
+			text-align:center;
+			width:50px;
+		}
+	}
+
+	tbody {
+		td {
+			border:1px solid $proforma-border-color;
+			padding:5px 0 ;
+		}
+		.colmonth {
+			text-align:center;
+			font-size:0.8em;
+			.small {
+				width:45px;
+			}
+		}
+
+		td.component {
+			padding:5px 0 5px 10px;
+		}
+
+		.labordetails {
+			color:#777;
+		}
+		.equipmentdetails {
+			color:#777;
+		}	
+		
+		.tinyinput {
+			width:35px;
+		}	
+		.tinyselect {
+			margin:5px 0;
+			padding:1px 2px;
+			width:35px;
+			font-size:0.85em;
+		}	
+
+		.colheader {
+			.percentChoice {
+				width:50px;
+				font-size:0.9em;
+				padding:1px 3px 1px 3px;
+				margin:0px;
+			}
+		}
+	}	
+
+	.volumeset {
+		.inputlabel {
+			padding:3px 0 0 0;
+		}
+		button.setfield {
+			width:40px;
+			height:20px;
+			padding:2px;
+			font-weight:bolder;
+			font-size:0.8em;
+		}
+		input.setfield {
+			width:35px;
+		}
+	}
+}
+
+.proforma-summary {
+	border:0px;
+	width:100%;	
+	border-collapse: collapse;
+
+
+	thead {
+		th {
+			background-color: $proforma-header-color;
+
+		}
+		.col1 {
+			.tinyest {
+				padding:4px 10px 4px 8px;
+				margin:0px;
+				font-size:0.75em;
+
+			}
+		}
+		.colyear {
+			text-align:center;
+			width:150px;
+		}
+	}
+
+	tbody {
+
+		.row {
+			background-color:#fff;
+
+			.tinyest {
+				padding:4px 10px 4px 8px;
+				margin:0px;
+				font-size:0.75em;
+
+			}
+		}	
+
+		.entry {
+			border-bottom:1px solid $proforma-border-color;			
+		}
+
+		.totals {
+			border-bottom:3px $proforma-border-color solid;
+		}
+
+		.summary {
+			border-bottom:3px solid $proforma-border-color;
+		}		
+
+		.divider {
+			border-bottom:3px solid black;
+		}
+		
+		.col1 {
+
+		}
+		
+		.colyear {
+			text-align:right;
+			width:150px;
+		}
+
+		.topline {
+			font-size:1.25em;
+			font-weight:bold;
+		}
+
+		.labordetails {
+			color:#777;
+		}
+		.equipmentdetails {
+			color:#777;
+		}
+	}
+}
